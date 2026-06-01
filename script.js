@@ -32,16 +32,18 @@ async function GoCoco(){
 // Predictions et Detection
   const predictions = await model.detect(image);
   console.log("Predictions:", predictions);
-
-
 }
 
-function genererInventaire(predictions){
+
+
+
+
+function afficherInventaire(inventaire){
   const ul = document.querySelector("#listInventaire");
   ul.innerHTML = "";
-  predictions.forEach(inventaire =>{
+  inventaire.forEach(Inv =>{
     const li = document.createElement("li");
-    li.textContent = ``;
+    li.textContent = `${Inv.class}`;
     ul.appendChild(li);
   })
 }
