@@ -1,3 +1,7 @@
+// Preparation bouton analyser
+const analyser = document.getElementById("analyse_btn");
+analyser.addEventListener("click", GoCoco);
+
 // On charge l'image et on l'affiche avec possibilité de la remplacer
 const image = document.getElementById("image");
 
@@ -13,9 +17,8 @@ const image = document.getElementById("image");
         // Fonction exécutée seulement quand l'image est chargée
         image.onload = () => {
         console.log("Image chargée !");
-        GoCoco();
+       
         };
-
 
         image.src = imageUrl;
         image.style.display = "block";
