@@ -1,5 +1,5 @@
 // Preparation bouton analyser
-const analyser = document.getElementById("buttonanalyser");
+const analyser = document.getElementById("analyse_btn");
 analyser.addEventListener("click", GoCoco);
 
 // On charge l'image et on l'affiche avec possibilité de la remplacer
