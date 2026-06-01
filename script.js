@@ -36,18 +36,27 @@ async function GoCoco(){
  genererInventaire(predictions)
 }
 
-function genererInventaire(result){
-  console.log(result)
+async function genererInventaire(result){
+    let inventaire = {};
+    result.forEach(objet => {
+      if (inventaire[objet.class] === undefined){
+        inventaire[objet.class] = 1;
+      }else {
+        inventaire[objet.class] +=1
+      }
+      console.log(inventaire)
+    })
+    afficherInventaire(inventaire)
 }
 
 function afficherInventaire(inventaire){
   const ul = document.querySelector("#listInventaire");
   ul.innerHTML = "";
-  inventaire.forEach(Inv =>{
+  for (i in inventaire){
     const li = document.createElement("li");
-    li.textContent = `${Inv.class}`;
+    li.textContent = `Vous avez : ${inventaire[i]} ${i}`;
     ul.appendChild(li);
-  })
+  }
 }
 
 
