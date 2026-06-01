@@ -39,3 +39,12 @@ function GoCoco(){
   });
 }
 
+function genererInventaire(predictions){
+  const ul = document.querySelector("#listInventaire");
+  ul.innerHTML = "";
+  predictions.forEach(inventaire =>{
+    const li = document.createElement("li");
+    li.textContent = ``;
+    ul.appendChild(li);
+  })
+}
