@@ -47,6 +47,7 @@ async function genererInventaire(result){
       console.log(inventaire)
     })
     afficherInventaire(inventaire)
+    genererPhrase(inventaire)
 }
 
 async function afficherInventaire(inventaire){
@@ -67,33 +68,38 @@ async function afficherInventaire(inventaire){
   }
   }
 }
-
+// Générer la phrase
+function genererPhrase(inventaire){
+  const content = [];
+  for (i in inventaire){
+    content.push(inventaire[i] + " " + i);
+   }
+  lirePhrase(content);
+}
 
 // Text to speech
-let button = document.getElementById("analyse_btn");
 let buttonStop = document.getElementById("stop_tts")
 let buttonPause = document.getElementById("pause_tts")
 let buttonResume = document.getElementById("reprendre_tts")
-let content = document.getElementById("listInventaire");
 
-button.addEventListener("click", function(){
-  let text = content.textContent;
 
-  const speech = new SpeechSynthesisUtterance(`J'ai détecté : ${text}`);
-  speech.lang = "fr-FR";
-  speech.rate = 1;
-  speech.pitch = 1;
-  speechSynthesis.speak(speech)
-})
-
-buttonStop.addEventListener("click", function(){
-  speechSynthesis.cancel()
-})
-
-buttonPause.addEventListener("click", function(){
-  speechSynthesis.pause()
-})
-
-buttonResume.addEventListener("click", function(){
-  speechSynthesis.resume()
-})
+function lirePhrase(content){
+  
+    const speech = new SpeechSynthesisUtterance(`J'ai détecté : ${content}`);
+    speech.lang = "fr-FR";
+    speech.rate = 1;
+    speech.pitch = 1;
+    speechSynthesis.speak(speech)
+  }
+  
+  buttonStop.addEventListener("click", function(){
+    speechSynthesis.cancel()
+  })
+  
+  buttonPause.addEventListener("click", function(){
+    speechSynthesis.pause()
+  })
+  
+  buttonResume.addEventListener("click", function(){
+    speechSynthesis.resume()
+  })
