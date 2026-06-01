@@ -22,23 +22,15 @@ const image = document.getElementById("image");
       }
     });
     
-function GoCoco(){
+async function GoCoco(){
  // Load the model.
-  cocoSsd.load().then(model => {
-    // detect objects in the image.
-    model.detect(image).then(predictions => {
-      console.log('Predictions: ', predictions);
-      console.log(predictions[0].class)
-      function genererInventaire(predictions){
-        let inventaire = {};
-        predictions.forEach(objet => {
-          let class1 = predictions[objet].class;
-          inventaire[class1] = 1;
-          console.log(inventaire)
-        })
-      }
-    });
-  });
+  let model = await cocoSsd.load();
+  
+// Predictions et Detection
+  const predictions = await model.detect(image);
+  console.log("Predictions:", predictions);
+
+
 }
 
 
@@ -54,3 +46,16 @@ function afficherInventaire(inventaire){
     ul.appendChild(li);
   })
 }
+
+
+// Text to speech
+let button = document.getElementById("analyse_btn");
+let content = document.getElementById("listInventaire");
+
+button.addEventListener("click", function(){
+  let text = content.textContent;
+
+  let speech = new SpeechSynthesisUtterance(text);
+  speechSynthesis.speak(speech)
+
+})
