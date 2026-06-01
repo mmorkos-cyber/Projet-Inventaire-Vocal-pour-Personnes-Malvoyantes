@@ -28,16 +28,29 @@ function GoCoco(){
     // detect objects in the image.
     model.detect(image).then(predictions => {
       console.log('Predictions: ', predictions);
+      console.log(predictions[0].class)
+      function genererInventaire(predictions){
+        let inventaire = {};
+        predictions.forEach(objet => {
+          let class1 = predictions[objet].class;
+          inventaire[class1] = 1;
+          console.log(inventaire)
+        })
+      }
     });
   });
 }
 
-function genererInventaire(predictions){
+
+
+
+
+function afficherInventaire(inventaire){
   const ul = document.querySelector("#listInventaire");
   ul.innerHTML = "";
-  predictions.forEach(inventaire =>{
+  inventaire.forEach(Inv =>{
     const li = document.createElement("li");
-    li.textContent = ``;
+    li.textContent = `${Inv.class}`;
     ul.appendChild(li);
   })
 }
