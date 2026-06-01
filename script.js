@@ -32,11 +32,13 @@ async function GoCoco(){
 // Predictions et Detection
   const predictions = await model.detect(image);
   console.log("Predictions:", predictions);
+  //let result = predictions
+ genererInventaire(predictions)
 }
 
-
-
-
+function genererInventaire(result){
+  console.log(result)
+}
 
 function afficherInventaire(inventaire){
   const ul = document.querySelector("#listInventaire");
