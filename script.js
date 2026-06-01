@@ -41,3 +41,16 @@ function genererInventaire(predictions){
     ul.appendChild(li);
   })
 }
+
+
+// Text to speech
+let button = document.getElementById("analyse_btn");
+let content = document.getElementById("listInventaire");
+
+button.addEventListener("click", function(){
+  let text = content.textContent;
+
+  let speech = new SpeechSynthesisUtterance(text);
+  speechSynthesis.speak(speech)
+
+})
