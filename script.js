@@ -22,13 +22,14 @@ const image = document.getElementById("image");
       }
     });
     
-function GoCoco(){
+async function GoCoco(){
  // Load the model.
-  cocoSsd.load().then(model => {
-    // detect objects in the image.
-    model.detect(image).then(predictions => {
-      console.log('Predictions: ', predictions);
-    });
-  });
+  let model = await cocoSsd.load();
+  
+// Predictions et Detection
+  const predictions = await model.detect(image);
+  console.log("Predictions:", predictions);
+
+
 }
 
