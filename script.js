@@ -53,12 +53,17 @@ function afficherInventaire(inventaire){
 
 // Text to speech
 let button = document.getElementById("analyse_btn");
+let buttonStop = document.getElementById("stop_tts")
 let content = document.getElementById("listInventaire");
 
 button.addEventListener("click", function(){
   let text = content.textContent;
 
-  let speech = new SpeechSynthesisUtterance(text);
+  let speech = new SpeechSynthesisUtterance(`J'ai détecté : ${text}`);
   speechSynthesis.speak(speech)
 
+})
+
+buttonStop.addEventListener("click", function(){
+  speechSynthesis.cancel()
 })
