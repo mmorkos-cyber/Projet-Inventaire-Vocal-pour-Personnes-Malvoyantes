@@ -50,13 +50,22 @@ async function genererInventaire(result){
     genererPhrase(inventaire)
 }
 
-function afficherInventaire(inventaire){
+async function afficherInventaire(inventaire){
+  const response = await fetch('semantic.json');
+  const json = await response.json();
+  
+  
   const ul = document.querySelector("#listInventaire");
   ul.innerHTML = "";
   for (i in inventaire){
-    const li = document.createElement("li");
-    li.textContent = `Vous avez : ${inventaire[i]} ${i}`;
-    ul.appendChild(li);
+    console.log(i)
+    for (let j = 0; j < json["Produits"].length; j++){
+    if (i == json["Produits"][j]["nom"]){
+      const li = document.createElement("li");
+      li.textContent = `${inventaire[i]} ${json["Produits"][j]["TraductionFR"]} -- ${json["Produits"][j]["definition"]}`;
+      ul.appendChild(li);
+    }
+  }
   }
 }
 // Générer la phrase
