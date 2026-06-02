@@ -6,60 +6,58 @@ analyser.addEventListener("click", GoCoco);
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-  
-
 // On charge l'image et on l'affiche avec possibilité de la remplacer
 const image = document.getElementById("image");
 
-upload.addEventListener("change", function () {
+    upload.addEventListener("change", function () {
 
-  const file = this.files[0];
+      const file = this.files[0];
+      // Taille canvas = taille image
+      canvas.width = image.width;
+      canvas.height = image.height;
 
-  // Taille canvas = taille image
-  canvas.width = image.width;
-  canvas.height = image.height;
+          
+      // nettoyage canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      
-  // nettoyage canvas
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (file) {
 
-  if (file) {
+        // Création d'une URL temporaire
+        const imageUrl = URL.createObjectURL(file);
 
-    // Création d'une URL temporaire
-    const imageUrl = URL.createObjectURL(file);
-
-    // Fonction exécutée seulement quand l'image est chargée
-    image.onload = () => {
-      console.log("Image chargée !");
+        // Fonction exécutée seulement quand l'image est chargée
+        image.onload = () => {
+        console.log("Image chargée !");
        
-    };
+        };
 
-    image.src = imageUrl;
+        image.src = imageUrl;
         image.style.display = "block";
       }
+      
     });
     
 async function GoCoco(){
-  // Load the model.
+ // Load the model.
   let model = await cocoSsd.load();
   
-  // Predictions et Detection
+// Predictions et Detection
   const predictions = await model.detect(image);
   console.log("Predictions:", predictions);
- 
-  genererInventaire(predictions)
-  dessinerBoundingBoxes(predictions);
+  //let result = predictions
+ genererInventaire(predictions)
+ dessinerBoundingBoxes(predictions)
 }
 
 async function genererInventaire(result){
     let inventaire = {};
     result.forEach(objet => {
-    if (inventaire[objet.class] === undefined){
-      inventaire[objet.class] = 1;
-    }else {
-      inventaire[objet.class] +=1
-    }
-    console.log(inventaire)
+      if (inventaire[objet.class] === undefined){
+        inventaire[objet.class] = 1;
+      }else {
+        inventaire[objet.class] +=1
+      }
+      console.log(inventaire)
     })
     afficherInventaire(inventaire)
 }
@@ -112,6 +110,17 @@ function lirePhrase(content){
   buttonResume.addEventListener("click", function(){
     speechSynthesis.resume()
   })
+
+  //stockage dans un fichier json => historique.json
+
+  function saveToJson(imageUrl, inventaire){
+    let dates = new Date(year,month,day,hours,minutes);
+    const save = {
+      date: dates,
+      nomImage: imageUrl,
+      inv: inventaire,
+    };
+  }
 function dessinerBoundingBoxes(predictions) {
   // Taille canvas = taille image
   canvas.width = image.width;
