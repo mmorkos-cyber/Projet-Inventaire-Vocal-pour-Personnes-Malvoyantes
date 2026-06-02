@@ -3,12 +3,13 @@ const analyser = document.getElementById("analyse_btn");
 analyser.addEventListener("click", GoCoco);
 
 let model;
+cocoSsd.load().then(function (loadedModel) {
+  model = loadedModel;
+  // Show demo section now model is ready to use.
+  demosSection.classList.remove('invisible');
+});
 
-async function initModel() {
-    let model = await cocoSsd.load();
-return model;
-}
-initModel();
+
 //Declaration canvas
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -37,10 +38,11 @@ if (getUserMediaSupported()) {
 
 // Enable the live webcam view and start classification.
 async function enableCam(event) {
- //let model = await cocoSsd.load();
+
   // Only continue if the COCO-SSD has finished loading.
-  
- 
+  if (!model) {
+    return;
+  } 
   // Hide the button once clicked.
   event.target.classList.add('removed');  
 
@@ -55,11 +57,7 @@ async function enableCam(event) {
   navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
     video.srcObject = stream;
     video.addEventListener('loadeddata', predictWebcam); 
-    
-     //setInterval(predictWebcam, 1000)
-    
-    
-    
+        
   });
 }
 
@@ -67,43 +65,31 @@ async function enableCam(event) {
 
 
   var children = []; 
-async function predictWebcam(model) {
-  // Load the model.
-//let model = await cocoSsd.load(  );
-  //if (!model) return;
 
+async function predictWebcam() {
+ 
   // Predictions et Detection
   const predictions = await model.detect(video);
-  console.log("Predictions:", predictions);
-
- 
+   
   //genererInventaire(predictions)
   dessinerBoundingBoxes(predictions);
   
     // Call this function again to keep predicting when the browser is ready.
     window.requestAnimationFrame(predictWebcam);
-    
-
-  
 
 }
+
 // Pretend model has loaded so we can try out the webcam code.
 //var model = true;
 demosSection.classList.remove('invisible');
 
-
-
-
 async function GoCoco(){
-  // Load the model.
-  let model = await cocoSsd.load();
-  
   // Predictions et Detection
   const predictions = await model.detect(video);
   console.log("Predictions:", predictions);
  
   genererInventaire(predictions)
-  dessinerBoundingBoxes(predictions);
+  
 }
 
 async function genererInventaire(result){
