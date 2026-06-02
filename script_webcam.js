@@ -113,24 +113,19 @@ async function afficherInventaire(inventaire){
   
   const ul = document.querySelector("#listInventaire");
   ul.innerHTML = "";
+  const content = []
   for (i in inventaire){
     console.log(i)
     for (let j = 0; j < json["Produits"].length; j++){
-      if (i == json["Produits"][j]["nom"]){
-        const li = document.createElement("li");
-        li.textContent = `${inventaire[i]} ${json["Produits"][j]["TraductionFR"]} -- ${json["Produits"][j]["definition"]}`;
-        ul.appendChild(li);
+    if (i == json["Produits"][j]["nom"]){
+      const li = document.createElement("li");
+      li.textContent = `${inventaire[i]} ${json["Produits"][j]["TraductionFR"]} -- ${json["Produits"][j]["definition"]}`;
+      ul.appendChild(li);
+      content.push(`${inventaire[i]}, ${json["Produits"][j]["TraductionFR"]}, ${json["Produits"][j]["definition"]}`)
     }
   }
   }
-}
-// Générer la phrase
-function genererPhrase(inventaire){
-  const content = [];
-  for (i in inventaire){
-    content.push(inventaire[i] + " " + i);
-   }
-  lirePhrase(content);
+  lirePhrase(content)
 }
 
 // Text to speech
@@ -160,7 +155,16 @@ function lirePhrase(content){
     speechSynthesis.resume()
   })
 
+  //stockage dans un fichier json => historique.json
 
+  function saveToJson(imageUrl, inventaire){
+    let dates = new Date(year,month,day,hours,minutes);
+    const save = {
+      date: dates,
+      nomImage: imageUrl,
+      inv: inventaire,
+    };
+  }
 function dessinerBoundingBoxes(predictions) {
   // Taille canvas = taille image
   canvas.width = video.width;
