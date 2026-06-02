@@ -132,7 +132,7 @@ async function afficherInventaire(inventaire){
 let buttonStop = document.getElementById("stop_tts")
 let buttonPause = document.getElementById("pause_tts")
 let buttonResume = document.getElementById("reprendre_tts")
-
+let buttonGuide = document.getElementById("notice")
 
 function lirePhrase(content){
   
@@ -153,6 +153,11 @@ function lirePhrase(content){
   
   buttonResume.addEventListener("click", function(){
     speechSynthesis.resume()
+  })
+
+  buttonGuide.addEventListener("click", function(){
+    const guide = new SpeechSynthesisUtterance("Cliquez sur le bouton “Activer Webcam” et autoriser l’accès de la caméra à votre navigateur. Une fois le flux vidéo chargé et affiché, cliquez sur le bouton “Analyser”. Il apparaîtra alors l’inventaire des objets identifiés et la synthèse vocale se lancera automatiquement. Vous avez la possibilité de contrôler la voix en interagissant avec les boutons pause, reprendre et stop.");
+    speechSynthesis.speak(guide)
   })
 
   //stockage dans un fichier json => historique.json
