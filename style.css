@@ -92,8 +92,8 @@ button:active {
 #pause_tts { background: #f59e0b; }
 #pause_tts:hover { background: #d97706; }
 
-#reprendre_tts { background: #16a34a; }
-#reprendre_tts:hover { background: #15803d; }
+#reprendre_tts { background: #edb46a; }
+#reprendre_tts:hover { background: #cf9b57; }
 
 /* Bloc de l'inventaire textuel */
 div:not(#image-container) {

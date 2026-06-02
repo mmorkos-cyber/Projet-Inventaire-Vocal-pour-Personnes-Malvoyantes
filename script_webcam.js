@@ -178,18 +178,18 @@ function dessinerBoundingBoxes(predictions) {
     const [x, y, width, height] = prediction.bbox;
 
     // Rectangle
-    ctx.strokeStyle = "green";
+    ctx.strokeStyle = "orange";
     ctx.lineWidth = 5;
     ctx.strokeRect(x, y, width, height);
 
     // Texte
     const texte = prediction.class + " (" + Math.round(prediction.score * 100) + "%)";
-    ctx.font = "16px Arial";
+    ctx.font = "22px Arial";
 
     const textWidth = ctx.measureText(texte).width;
 
     // Fond du texte
-    ctx.fillStyle = "red";
+    ctx.fillStyle = "blue";
     ctx.fillRect(
       x, y > 25 ? y - 25 : y, textWidth + 10, 25
     );
