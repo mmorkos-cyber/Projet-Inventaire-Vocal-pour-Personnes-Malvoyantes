@@ -2,12 +2,23 @@
 const analyser = document.getElementById("analyse_btn");
 analyser.addEventListener("click", GoCoco);
 
+//Declaration canvas
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
 // On charge l'image et on l'affiche avec possibilité de la remplacer
 const image = document.getElementById("image");
 
     upload.addEventListener("change", function () {
 
       const file = this.files[0];
+      // Taille canvas = taille image
+      canvas.width = image.width;
+      canvas.height = image.height;
+
+          
+      // nettoyage canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       if (file) {
 
@@ -35,6 +46,7 @@ async function GoCoco(){
   console.log("Predictions:", predictions);
   //let result = predictions
  genererInventaire(predictions)
+ dessinerBoundingBoxes(predictions)
 }
 
 async function genererInventaire(result){
