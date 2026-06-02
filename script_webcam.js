@@ -4,11 +4,11 @@ analyser.addEventListener("click", GoCoco);
 
 let model;
 
-async function initModel() {
-    let model = await cocoSsd.load();
-return model;
-}
-initModel();
+cocoSsd.load().then(function (loadedModel) {
+  model = loadedModel;
+  // Show demo section now model is ready to use.
+  demosSection.classList.remove('invisible');
+});
 //Declaration canvas
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -67,7 +67,7 @@ async function enableCam(event) {
 
 
   var children = []; 
-async function predictWebcam(model) {
+async function predictWebcam() {
   // Load the model.
 //let model = await cocoSsd.load(  );
   //if (!model) return;
