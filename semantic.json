@@ -1,0 +1,69 @@
+ {
+ "Produits": [
+        {
+            "id": 1,
+            "nom": "tv",
+            "TraductionFR": "Télévision",
+            "definition": "Une télévision est un appareil permettant d'afficher des images et de restituer le son d'un programme.",
+            "categorie": "Audiovisuel"
+        },
+        {
+            "id": 2,
+            "nom": "potted plant",
+            "TraductionFR": "Plante en pot",
+            "definition": "Une plante en pot est un élément végétal décoratif.",
+            "categorie": "Végétaux"
+        },
+        {
+            "id": 3,
+            "nom": "couch",
+            "TraductionFR": "Canapé",
+            "definition": " Un canapé est un meuble confortable ayant plusieurs places servant à s'assoir.",
+            "categorie": "Mobilier"
+        },
+        {
+            "id": 4,
+            "nom": "cup",
+            "TraductionFR": "Tasse",
+            "definition": "Une tasse est un petit récipient individuel permettant de boire des boissons chaudes.",
+            "categorie": "Ustensile"
+        },
+        {
+            "id": 5,
+            "nom": "keyboard",
+            "TraductionFR": "Clavier",
+            "definition": "Un clavier est un organe d'entrée muni de touches qui permet de saisir des informations (texte ou chiffres).",
+            "categorie": "Informatique"
+        },
+        {
+            "id": 6,
+            "nom": "person",
+            "TraductionFR": "Personne",
+            "definition": "Une personne est un individu de l'espèce humaine (lorsqu'on ne peut ou ne veut préciser ni l'apparence, ni l'âge, ni le sexe).",
+            "categorie": "Vivant"
+        },
+        {
+            "id": 7,
+            "nom": "laptop",
+            "TraductionFR": "Ordinateur portable",
+            "definition": "Un ordinateur portable, ou simplement un portable, est un ordinateur personnel dont le poids et les dimensions limitées permettent un transport facile. ",
+            "categorie": "Informatique"
+        },
+        {
+            "id": 8,
+            "nom": "chair",
+            "TraductionFR": "Chaise",
+            "definition": "Une chaise est un meuble muni d’un dossier et confectionné afin qu’une personne s'assoie dessus.",
+            "categorie": "Mobilier"
+        },
+        {
+            "id": 9,
+            "nom": "dining table",
+            "TraductionFR": "Table à manger",
+            "definition": "Une table est un meuble composé d'une surface plane et horizontale soutenue par un ou plusieurs supports (pieds ou tréteaux). Dans la culture occidentale, elle est notamment mais pas uniquement utilisée pour les repas.",
+            "categorie": "Mobilier"
+        }
+        
+    ]
+
+    }

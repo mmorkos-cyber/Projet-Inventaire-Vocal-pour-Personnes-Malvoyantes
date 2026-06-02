@@ -1,0 +1,120 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+  color: #333;
+  min-height: 100vh;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2 {
+  margin-bottom: 1.5rem;
+  color: #1f2937;
+}
+
+input[type="file"] {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: white;
+  border: 2px dashed #3b82f6;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* Nouveau style pour le conteneur : c'est lui qui gère le cadre blanc et l'ombre */
+#image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 700px;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1.5rem;
+}
+
+/* Wrapper interne indispensable pour la position relative stricte sans casser le padding */
+.canvas-wrapper {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px; /* Optionnel : léger arrondi pour l'image elle-même */
+}
+
+/* Zone des boutons */
+.button-group {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+button {
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+button:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+#stop_tts { background: #dc2626; }
+#stop_tts:hover { background: #b91c1c; }
+
+#pause_tts { background: #f59e0b; }
+#pause_tts:hover { background: #d97706; }
+
+#reprendre_tts { background: #edb46a; }
+#reprendre_tts:hover { background: #cf9b57; }
+
+/* Bloc de l'inventaire textuel */
+div:not(#image-container) {
+  width: 100%;
+  max-width: 700px;
+  margin-top: 2rem;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+#listInventaire {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+#listInventaire li {
+  padding: 0.8rem;
+  margin-bottom: 0.5rem;
+  background: #eef2ff;
+  border-left: 4px solid #2563eb;
+  border-radius: 6px;
+}
