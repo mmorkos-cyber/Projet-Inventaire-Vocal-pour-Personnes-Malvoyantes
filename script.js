@@ -62,7 +62,6 @@ async function genererInventaire(result){
     console.log(inventaire)
     })
     afficherInventaire(inventaire)
-    genererPhrase(inventaire)
 }
 
 async function afficherInventaire(inventaire){
@@ -72,24 +71,19 @@ async function afficherInventaire(inventaire){
   
   const ul = document.querySelector("#listInventaire");
   ul.innerHTML = "";
+  const content = []
   for (i in inventaire){
     console.log(i)
     for (let j = 0; j < json["Produits"].length; j++){
-      if (i == json["Produits"][j]["nom"]){
-        const li = document.createElement("li");
-        li.textContent = `${inventaire[i]} ${json["Produits"][j]["TraductionFR"]} -- ${json["Produits"][j]["definition"]}`;
-        ul.appendChild(li);
+    if (i == json["Produits"][j]["nom"]){
+      const li = document.createElement("li");
+      li.textContent = `${inventaire[i]} ${json["Produits"][j]["TraductionFR"]} -- ${json["Produits"][j]["definition"]}`;
+      ul.appendChild(li);
+      content.push(`${inventaire[i]}, ${json["Produits"][j]["TraductionFR"]}, ${json["Produits"][j]["definition"]}`)
     }
   }
   }
-}
-// Générer la phrase
-function genererPhrase(inventaire){
-  const content = [];
-  for (i in inventaire){
-    content.push(inventaire[i] + " " + i);
-   }
-  lirePhrase(content);
+  lirePhrase(content)
 }
 
 // Text to speech
@@ -118,41 +112,3 @@ function lirePhrase(content){
   buttonResume.addEventListener("click", function(){
     speechSynthesis.resume()
   })
-
-
-function dessinerBoundingBoxes(predictions) {
-  // Taille canvas = taille image
-  canvas.width = image.width;
-  canvas.height = image.height;
-
-  // nettoyage canvas
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  predictions.forEach(prediction => {
-
-    const [x, y, width, height] = prediction.bbox;
-
-    // Rectangle
-    ctx.strokeStyle = "green";
-    ctx.lineWidth = 5;
-    ctx.strokeRect(x, y, width, height);
-
-    // Texte
-    const texte = prediction.class + " (" + Math.round(prediction.score * 100) + "%)";
-    ctx.font = "16px Arial";
-
-    const textWidth = ctx.measureText(texte).width;
-
-    // Fond du texte
-    ctx.fillStyle = "red";
-    ctx.fillRect(
-      x, y > 25 ? y - 25 : y, textWidth + 10, 25
-    );
-
-    // Texte blanc
-    ctx.fillStyle = "white";
-    ctx.fillText(
-      texte, x + 5, y > 25 ? y - 8 : y + 17
-    );
-  });
-}
