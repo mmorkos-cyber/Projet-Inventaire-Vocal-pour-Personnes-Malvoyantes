@@ -23,6 +23,7 @@ const image = document.getElementById("image");
         image.src = imageUrl;
         image.style.display = "block";
       }
+      
     });
     
 async function GoCoco(){
@@ -103,3 +104,14 @@ function lirePhrase(content){
   buttonResume.addEventListener("click", function(){
     speechSynthesis.resume()
   })
+
+  //stockage dans un fichier json => historique.json
+
+  function saveToJson(imageUrl, inventaire){
+    let dates = new Date(year,month,day,hours,minutes);
+    const save = {
+      date: dates,
+      nomImage: imageUrl,
+      inv: inventaire,
+    };
+  }
