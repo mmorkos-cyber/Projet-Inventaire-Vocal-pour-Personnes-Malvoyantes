@@ -12,7 +12,14 @@
   <input type="file" id="upload" accept="image/*">
 
   <br>
+  <div id="image-container" style="position: relative; display: inline-block;">
+
   <img id="image" alt="Aperçu image">
+
+  <canvas id="canvas" style="position:absolute; top:0; left:0; pointer-events:none;">
+  </canvas>
+
+</div>
 
   <button id = "analyse_btn">Analyser</button>
   <button id = "stop_tts">Stop</button>
